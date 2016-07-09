@@ -1,9 +1,12 @@
 # java-ffmpeg
     A maven project with a bitrate bug corrected ,which is refering to jave-1.0.2-src
 
-    jave源码包的好处是，它封装了ProcessBuilder对ffmpeg的调用，并完美支持了windows和linux环境，不需要额外安装ffmpeg，就可以进行音视频文件的转码。
-    关于linux的支持情况在centos 6.5亲测可用。
-    可能会存在平台差异性问题，还有许多细节被验证和完善，所以选择了让它开源。
+    *jave源码包的好处是，它封装了ProcessBuilder对ffmpeg的调用，并完美支持了windows和linux环境。
+    *不需要额外安装ffmpeg，就可以进行音视频文件的转码。
+    *关于linux的支持情况在centos 6.5亲测可用。
+    *可能会存在平台差异性问题，还有许多细节被验证和完善，所以选择了让它开源。
+    
+    以下是java调用Encoder的示例代码
 
 ```` java
 public static void main(String[] args) {
@@ -31,6 +34,7 @@ public static void main(String[] args) {
 			System.out.println("audio decoder="+aInfo.getDecoder());
 			System.out.println("audio samplingRate="+aInfo.getSamplingRate());
 			
+			//视频转码
 			EncodingAttributes enAttr = new EncodingAttributes(); 
 			VideoAttributes vAttr = new VideoAttributes();
 			AudioAttributes aAttr = new AudioAttributes();
