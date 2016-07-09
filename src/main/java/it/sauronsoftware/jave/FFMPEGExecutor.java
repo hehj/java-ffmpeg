@@ -38,7 +38,7 @@ class FFMPEGExecutor {
 	/**
 	 * Arguments for the executable.
 	 */
-	private ArrayList args = new ArrayList();
+	private ArrayList<String> args = new ArrayList<>();
 
 	/**
 	 * The process representing the ffmpeg execution.

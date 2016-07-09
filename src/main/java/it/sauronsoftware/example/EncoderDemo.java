@@ -33,10 +33,9 @@ public class EncoderDemo {
 			System.out.println("真实的bitRete="+mmInfo.getBitRate());
 			System.out.println("VideoInfo的bitRete(有bug)="+vInfo.getBitRate());
 			System.out.println("AudioInfo的bitRete(有bug)="+aInfo.getBitRate());
-			System.out.println("分辨率="+vInfo.getSize());
+			System.out.println("video 分辨率="+vInfo.getSize());
 			
 			System.out.println("audio channels="+aInfo.getChannels());
-			System.out.println("audio decoder="+aInfo.getDecoder());
 			System.out.println("audio samplingRate="+aInfo.getSamplingRate());
 			
 			EncodingAttributes enAttr = new EncodingAttributes(); 
