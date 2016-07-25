@@ -47,3 +47,4 @@ Temporary Items
 *.project
 .settings/org.eclipse.core.resources.prefs
 *.prefs
+.settings

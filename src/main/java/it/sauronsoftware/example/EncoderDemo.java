@@ -17,8 +17,8 @@ public class EncoderDemo {
 	public static void main(String[] args) {
 		Encoder encoder = new  Encoder();
 		//替换成你的文件
-		File source = new File("D://trailer_002winnie.mp4");
-		File target = new File("D://trailer_002winnie_ld.mp4");
+		File source = new File("/Volumes/WOKSTATION/499fc747-5b44-4a91-b94f-bd47718b0f50.mp4");
+		File target = new File("/Volumes/WOKSTATION/499fc747-5b44-4a91-b94f-bd47718b0f50_ld.mp4");
 		
 		if(!source.exists()){
 			System.out.println("Source file is not exists!");
