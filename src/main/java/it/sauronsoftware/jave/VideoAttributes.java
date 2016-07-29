@@ -56,7 +56,7 @@ public class VideoAttributes implements Serializable {
 	 * The frame rate value for the encoding process. If null or not specified a
 	 * default value will be picked.
 	 */
-	private Integer frameRate = null;
+	private Float frameRate = null;
 
 	/**
 	 * The video size for the encoding process. If null or not specified the
@@ -134,7 +134,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The frame rate value for the encoding process.
 	 */
-	Integer getFrameRate() {
+	Float getFrameRate() {
 		return frameRate;
 	}
 
@@ -145,7 +145,7 @@ public class VideoAttributes implements Serializable {
 	 * @param frameRate
 	 *            The frame rate value for the encoding process.
 	 */
-	public void setFrameRate(Integer frameRate) {
+	public void setFrameRate(float frameRate) {
 		this.frameRate = frameRate;
 	}
 

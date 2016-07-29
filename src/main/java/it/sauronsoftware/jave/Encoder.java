@@ -730,6 +730,23 @@ public class Encoder {
 			EncoderException {
 		encode(source, target, attributes, null);
 	}
+	/**
+	 * Simple more strong more
+	 * @param source
+	 * @param tartget
+	 * @throws EncoderException
+	 */
+	public void encode(File source, File tartget) throws EncoderException{
+		FFMPEGExecutor ffmpeg = locator.createExecutor();
+		ffmpeg.addArgument("-i");
+		ffmpeg.addArgument(source.getAbsolutePath());
+		ffmpeg.addArgument(tartget.getAbsolutePath());
+		try {
+			ffmpeg.execute();
+		} catch (IOException e) {
+			throw new EncoderException(e);
+		}
+	}
 
 	/**
 	 * Re-encode a multimedia file.
@@ -798,7 +815,7 @@ public class Encoder {
 				ffmpeg.addArgument("-b");
 				ffmpeg.addArgument(String.valueOf(bitRate.intValue()));
 			}
-			Integer frameRate = videoAttributes.getFrameRate();
+			Float frameRate = videoAttributes.getFrameRate();
 			if (frameRate != null) {
 				ffmpeg.addArgument("-r");
 				ffmpeg.addArgument(String.valueOf(frameRate.intValue()));

@@ -16,9 +16,9 @@ import it.sauronsoftware.jave.VideoSize;
 public class EncoderDemo {
 	public static void main(String[] args) {
 		Encoder encoder = new  Encoder();
-		//替换成你的文件
-		File source = new File("/Volumes/WOKSTATION/499fc747-5b44-4a91-b94f-bd47718b0f50.mp4");
-		File target = new File("/Volumes/WOKSTATION/499fc747-5b44-4a91-b94f-bd47718b0f50_ld.mp4");
+		//your file 
+		File source = new File("E:\\encodeStudio\\output.mp4");
+		File target = new File("E:\\encodeStudio\\output.mp3");
 		
 		if(!source.exists()){
 			System.out.println("Source file is not exists!");
@@ -26,38 +26,47 @@ public class EncoderDemo {
 		}
 		
 		try {
-			//取视频信息
+			//video info
 			MultimediaInfo mmInfo = encoder.getInfo(source);
 			VideoInfo vInfo = mmInfo.getVideo();
 			AudioInfo aInfo = mmInfo.getAudio();
-			System.out.println("真实的bitRete="+mmInfo.getBitRate());
-			System.out.println("VideoInfo的bitRete(有bug)="+vInfo.getBitRate());
-			System.out.println("AudioInfo的bitRete(有bug)="+aInfo.getBitRate());
-			System.out.println("video 分辨率="+vInfo.getSize());
-			
-			System.out.println("audio channels="+aInfo.getChannels());
-			System.out.println("audio samplingRate="+aInfo.getSamplingRate());
 			
 			EncodingAttributes enAttr = new EncodingAttributes(); 
 			VideoAttributes vAttr = new VideoAttributes();
 			AudioAttributes aAttr = new AudioAttributes();
 			
-			VideoSize vSize = new VideoSize(960, 640);
-			
-			enAttr.setFormat("mp4");
-			
-			//ffmpeg 默认的 bitRate 是 128kb/s, 防止视频本身低于这个值报错
-			vAttr.setBitRate(mmInfo.getBitRate()*1000);
-			if(vSize.getWidth()>vInfo.getSize().getWidth()||vSize.getHeight()>vInfo.getSize().getHeight()){
-				vSize = new VideoSize(vInfo.getSize().getWidth(),vInfo.getSize().getHeight());
+			if(vInfo==null){//not video
+				vInfo = new VideoInfo();
+			}else{
+				System.out.println("bitRete="+mmInfo.getBitRate());
+				System.out.println("VideoInfo的bitRete(bug)="+vInfo.getBitRate());
+				System.out.println("AudioInfo的bitRete(bug)="+aInfo.getBitRate());
+				System.out.println("video size="+vInfo.getSize());
+				VideoSize vSize = new VideoSize(960, 640);
+				if(vSize.getWidth()>vInfo.getSize().getWidth()||vSize.getHeight()>vInfo.getSize().getHeight()){
+					vSize = new VideoSize(vInfo.getSize().getWidth(),vInfo.getSize().getHeight());
+				}
+				vAttr.setSize(vSize);
 			}
 			
-			vAttr.setSize(vSize);
+			if(aInfo==null){//no audio
+				aInfo = new AudioInfo();
+			}else{
+				System.out.println("audio channels="+aInfo.getChannels());
+				System.out.println("audio samplingRate="+aInfo.getSamplingRate());
+			}
+			
+			enAttr.setFormat("flv");
+			
+			//ffmpeg defualt bitRate is 128kb/s, lower then this value will run error
+			vAttr.setBitRate(mmInfo.getBitRate()*1000);
+			
 			aAttr.setChannels(aInfo.getChannels());
 			aAttr.setSamplingRate(aInfo.getSamplingRate());
 			enAttr.setVideoAttributes(vAttr);
 			enAttr.setAudioAttributes(aAttr);
 			encoder.encode(source, target, enAttr);
+			System.out.println("success!");
 		} catch (InputFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
