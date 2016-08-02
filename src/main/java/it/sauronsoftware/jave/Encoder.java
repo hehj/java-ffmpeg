@@ -108,7 +108,7 @@ public class Encoder {
 	 * locate the ffmpeg executable to use.
 	 */
 	public Encoder() {
-		this.locator = new DefaultFFMPEGLocator();
+		this.locator = new DefaultFFMPEGLocator("ffmpeg");
 	}
 
 	/**

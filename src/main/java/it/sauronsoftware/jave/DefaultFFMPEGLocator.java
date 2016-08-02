@@ -44,12 +44,21 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 	 * The ffmpeg executable file path.
 	 */
 	private String path;
+	
+	public DefaultFFMPEGLocator(String path){
+		File exe = new File(path);
+		if(exe.exists()){
+			this.path =path;
+		}else{
+			defaultFFMPEGLocator();
+		}
+	}
 
 	/**
 	 * It builds the default FFMPEGLocator, exporting the ffmpeg executable on a
 	 * temp file.
 	 */
-	public DefaultFFMPEGLocator() {
+	public void defaultFFMPEGLocator() {
 		// Windows?
 		boolean isWindows;
 		String os = System.getProperty("os.name").toLowerCase();
