@@ -8,60 +8,53 @@
     关于linux的支持情况在centos 6.5亲测可用。
     可能会存在平台差异性问题，还有许多细节被验证和完善，所以选择了让它开源。
     
+    V0.0.4 
+    在此前jave-1.0.2-src里封装的ffmpeg不支持h264，h265格式的vcodec。这对于原本是用于web项目的转码服务是致命的。在这个版本中对此做了修复，将ffmpeg分离出来（意味着你必须独立安装ffmpeg，以后这个项目只是java使用ffmpeg的sdk，不再提供ffmpeg的免安装服务）
+    
     以下是java调用Encoder的示例代码
 
 ```` java
 public static void main(String[] args) {
-		Encoder encoder = new  Encoder();
-		//替换成你的文件
-		File source = new File("D://trailer_002winnie.mp4");
-		File target = new File("D://trailer_002winnie_ld.mp4");
+	Encoder encoder = new  Encoder();
+	//your file 
+	File source = new File("/Volumes/WOKSTATION/encodeStudio/28ce0b00-c0be-4710-a893-ba6e45374c94.wmv");
+	File target = new File("/Volumes/WOKSTATION/encodeStudio/28ce0b00-c0be-4710-a893-ba6e45374c94.mp4");
+	
+	if(!source.exists()){
+		System.out.println("Source file is not exists!");
+		return;
+	}
+	
+	try {
+		//video info
+		MultimediaInfo mmInfo = encoder.getInfo(source);
+		VideoInfo vInfo = mmInfo.getVideo();
+		AudioInfo aInfo = mmInfo.getAudio();
 		
-		if(!source.exists()){
-			System.out.println("Source file is not exists!");
-			return;
-		}
+		EncodingAttributes enAttr = new EncodingAttributes(); 
+		VideoAttributes vAttr = new VideoAttributes();
+		AudioAttributes aAttr = new AudioAttributes();
 		
-		try {
-			//取视频信息
-			MultimediaInfo mmInfo = encoder.getInfo(source);
-			VideoInfo vInfo = mmInfo.getVideo();
-			AudioInfo aInfo = mmInfo.getAudio();
-			System.out.println("真实的bitRete="+mmInfo.getBitRate());
-			System.out.println("VideoInfo的bitRete(有bug)="+vInfo.getBitRate());
-			System.out.println("AudioInfo的bitRete(有bug)="+aInfo.getBitRate());
-			System.out.println("分辨率="+vInfo.getSize());
-			
-			System.out.println("audio channels="+aInfo.getChannels());
-			System.out.println("audio decoder="+aInfo.getDecoder());
-			System.out.println("audio samplingRate="+aInfo.getSamplingRate());
-			
-			//视频转码
-			EncodingAttributes enAttr = new EncodingAttributes(); 
-			VideoAttributes vAttr = new VideoAttributes();
-			AudioAttributes aAttr = new AudioAttributes();
-			
-			VideoSize vSize = new VideoSize(960, 640);
-			
-			enAttr.setFormat("mp4");
-			
-			//ffmpeg 默认的 bitRate 是 128kb/s, 防止视频本身低于这个值报错
+		if(vInfo!=null){
+			vAttr.setSize(vInfo.getSize());
 			vAttr.setBitRate(mmInfo.getBitRate()*1000);
-			if(vSize.getWidth()>vInfo.getSize().getWidth()||vSize.getHeight()>vInfo.getSize().getHeight()){
-				vSize = new VideoSize(vInfo.getSize().getWidth(),vInfo.getSize().getHeight());
-			}
-			
-			vAttr.setSize(vSize);
-			aAttr.setChannels(aInfo.getChannels());
-			aAttr.setSamplingRate(aInfo.getSamplingRate());
-			enAttr.setVideoAttributes(vAttr);
-			enAttr.setAudioAttributes(aAttr);
-			encoder.encode(source, target, enAttr);
-		} catch (InputFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EncoderException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		
+		if(aInfo!=null){
+			aAttr.setSamplingRate(aInfo.getSamplingRate());
+		}
+		
+		vAttr.setCodec("libx264");
+		enAttr.setFormat("mp4");
+		enAttr.setVideoAttributes(vAttr);
+		enAttr.setAudioAttributes(aAttr);
+		System.out.println("begin!");
+		encoder.encode(source, target, enAttr);
+		System.out.println("success!");
+	} catch (InputFormatException e) {
+		e.printStackTrace();
+	} catch (EncoderException e) {
+		e.printStackTrace();
+	}
+}
 ````
