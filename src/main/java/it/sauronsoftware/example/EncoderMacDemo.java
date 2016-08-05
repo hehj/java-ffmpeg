@@ -11,14 +11,13 @@ import it.sauronsoftware.jave.InputFormatException;
 import it.sauronsoftware.jave.MultimediaInfo;
 import it.sauronsoftware.jave.VideoAttributes;
 import it.sauronsoftware.jave.VideoInfo;
-import it.sauronsoftware.jave.VideoSize;
 
-public class EncoderDemo {
+public class EncoderMacDemo {
 	public static void main(String[] args) {
 		Encoder encoder = new  Encoder();
 		//your file 
-		File source = new File("E:/00d05abe-ae8b-451b-bbc1-bcd37cb866bd.mp4");
-		File target = new File("E:/output.mp3");
+		File source = new File("/Volumes/WOKSTATION/encodeStudio/28ce0b00-c0be-4710-a893-ba6e45374c94.wmv");
+		File target = new File("/Volumes/WOKSTATION/encodeStudio/28ce0b00-c0be-4710-a893-ba6e45374c94.mp4");
 		
 		if(!source.exists()){
 			System.out.println("Source file is not exists!");
@@ -35,36 +34,21 @@ public class EncoderDemo {
 			VideoAttributes vAttr = new VideoAttributes();
 			AudioAttributes aAttr = new AudioAttributes();
 			
-			if(vInfo==null){//not video
-				vInfo = new VideoInfo();
-			}else{
-				System.out.println("bitRete="+mmInfo.getBitRate());
-				System.out.println("VideoInfo的bitRete(bug)="+vInfo.getBitRate());
-				System.out.println("AudioInfo的bitRete(bug)="+aInfo.getBitRate());
-				System.out.println("video size="+vInfo.getSize());
-				VideoSize vSize = new VideoSize(960, 640);
-				if(vSize.getWidth()>vInfo.getSize().getWidth()||vSize.getHeight()>vInfo.getSize().getHeight()){
-					vSize = new VideoSize(vInfo.getSize().getWidth(),vInfo.getSize().getHeight());
-				}
-				vAttr.setSize(vSize);
+			if(vInfo!=null){
+				vAttr.setSize(vInfo.getSize());
+				vAttr.setBitRate(mmInfo.getBitRate()*1000);
 			}
 			
-			if(aInfo==null){//no audio
-				aInfo = new AudioInfo();
-			}else{
-				System.out.println("audio channels="+aInfo.getChannels());
-				System.out.println("audio samplingRate="+aInfo.getSamplingRate());
+			if(aInfo!=null){
+				aAttr.setSamplingRate(aInfo.getSamplingRate());
 			}
 			
-			enAttr.setFormat("flv");
-			
-			//ffmpeg defualt bitRate is 128kb/s, lower then this value will run error
-			vAttr.setBitRate(mmInfo.getBitRate()*1000);
-			
-			aAttr.setChannels(aInfo.getChannels());
-			aAttr.setSamplingRate(aInfo.getSamplingRate());
+
+			vAttr.setCodec("libx264");
+			enAttr.setFormat("mp4");
 			enAttr.setVideoAttributes(vAttr);
 			enAttr.setAudioAttributes(aAttr);
+			System.out.println("begin!");
 			encoder.encode(source, target, enAttr);
 			System.out.println("success!");
 		} catch (InputFormatException e) {
