@@ -1,17 +1,16 @@
 # java-ffmpeg
 @(Hehangjie)[互联网中尉 www.itlieutenant.com]
 
+    V0.0.1
     A maven project with a bitrate bug corrected ,which is refering to jave-1.0.2-src
-
-    jave源码包的好处是，它封装了ProcessBuilder对ffmpeg的调用，并完美支持了windows和linux环境。
-    不需要额外安装ffmpeg，就可以进行音视频文件的转码。
-    关于linux的支持情况在centos 6.5亲测可用。
-    可能会存在平台差异性问题，还有许多细节被验证和完善，所以选择了让它开源。
     
     V0.0.4 
     在此前jave-1.0.2-src里封装的ffmpeg不支持h264，h265格式的vcodec。这对于原本是用于web项目的转码服务是致命的。
     在这个版本中对此做了修复，将ffmpeg分离出来（意味着你必须独立安装ffmpeg，以后这个项目只是java使用ffmpeg的sdk，
     不再提供ffmpeg的免安装服务）
+    
+    V0.0.5
+    弃用了jave，改名java-ffmpeg
     
     以下是java调用Encoder的示例代码
 
