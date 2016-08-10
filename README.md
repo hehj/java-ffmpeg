@@ -5,8 +5,8 @@
     1、Install ffmpeg, Guide address - http://trac.ffmpeg.org/wiki/CompilationGuide/Centos
     2、Use H264 decoder, args like "-vcodec libx264", libx264 is opensource
     3、At last, Run cmd like "ffmpeg -i inputFile -vcodec libx264 outputFile"
-    4、About default args, For example, Ffmpeg default bitrate arg is 200k, if you inputFile bitrate lower then 200k, 
-    it will get a exception. So u must pay attention to this case.
+    4、About default args, For example, Ffmpeg default bitrate arg is 200k, if you inputFile bitrate 
+    lower then 200k, it will get a exception. So u must pay attention to this case.
     
     V0.0.1
     A maven project with a bitrate bug corrected ,which is refering to jave-1.0.2-src
