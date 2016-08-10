@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.exception;
 
 /**
  * Encoding expection.
@@ -27,19 +27,19 @@ public class EncoderException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	EncoderException() {
+	public EncoderException() {
 		super();
 	}
 
-	EncoderException(String message) {
+	public EncoderException(String message) {
 		super(message);
 	}
 
-	EncoderException(Throwable cause) {
+	public EncoderException(Throwable cause) {
 		super(cause);
 	}
 
-	EncoderException(String message, Throwable cause) {
+	public EncoderException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

@@ -1,10 +1,10 @@
-package it.sauronsoftware.example;
+package com.itlieutenant.example;
 
 import java.io.File;
 
-import it.sauronsoftware.jave.Encoder;
-import it.sauronsoftware.jave.EncoderException;
-import it.sauronsoftware.jave.InputFormatException;
+import com.itlieutenant.exception.EncoderException;
+import com.itlieutenant.exception.InputFormatException;
+import com.itlieutenant.service.Encoder;
 
 public class SimpleEncoderDemo {
 	public static void main(String[] args) {

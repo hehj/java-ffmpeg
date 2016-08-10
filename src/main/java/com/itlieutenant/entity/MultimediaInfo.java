@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 /**
  * Instances of this class report informations about a decoded multimedia file.
@@ -88,7 +88,7 @@ public class MultimediaInfo {
 	 * @param duration
 	 *            The stream duration in millis.
 	 */
-	void setDuration(long duration) {
+	public void setDuration(long duration) {
 		this.duration = duration;
 	}
 
@@ -108,7 +108,7 @@ public class MultimediaInfo {
 	 * @param audio
 	 *            A set of audio-specific informations.
 	 */
-	void setAudio(AudioInfo audio) {
+	public void setAudio(AudioInfo audio) {
 		this.audio = audio;
 	}
 
@@ -128,7 +128,7 @@ public class MultimediaInfo {
 	 * @param video
 	 *            A set of video-specific informations.
 	 */
-	void setVideo(VideoInfo video) {
+	public void setVideo(VideoInfo video) {
 		this.video = video;
 	}
 

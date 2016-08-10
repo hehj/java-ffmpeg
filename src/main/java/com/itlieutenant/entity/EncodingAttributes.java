@@ -16,9 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 import java.io.Serializable;
+
+import com.itlieutenant.service.Encoder;
 
 /**
  * Attributes controlling the encoding process.
@@ -67,7 +69,7 @@ public class EncodingAttributes implements Serializable {
 	 * 
 	 * @return The format name for the encoded target multimedia file.
 	 */
-	String getFormat() {
+	public String getFormat() {
 		return format;
 	}
 
@@ -87,7 +89,7 @@ public class EncodingAttributes implements Serializable {
 	 * 
 	 * @return The start offset time (seconds).
 	 */
-	Float getOffset() {
+	public Float getOffset() {
 		return offset;
 	}
 
@@ -107,7 +109,7 @@ public class EncodingAttributes implements Serializable {
 	 * 
 	 * @return The duration (seconds) of the re-encoded stream.
 	 */
-	Float getDuration() {
+	public Float getDuration() {
 		return duration;
 	}
 
@@ -130,7 +132,7 @@ public class EncodingAttributes implements Serializable {
 	 * @return The attributes for the encoding of the audio stream in the target
 	 *         multimedia file.
 	 */
-	AudioAttributes getAudioAttributes() {
+	public AudioAttributes getAudioAttributes() {
 		return audioAttributes;
 	}
 
@@ -154,7 +156,7 @@ public class EncodingAttributes implements Serializable {
 	 * @return The attributes for the encoding of the video stream in the target
 	 *         multimedia file.
 	 */
-	VideoAttributes getVideoAttributes() {
+	public VideoAttributes getVideoAttributes() {
 		return videoAttributes;
 	}
 

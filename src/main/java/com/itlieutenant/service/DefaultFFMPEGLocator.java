@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,56 +59,6 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 	 * temp file.
 	 */
 	public void defaultFFMPEGLocator() {
-
-		// // Windows?
-		// boolean isWindows = false;
-		// boolean isMac = false;
-		// boolean other = true;
-		// String os = System.getProperty("os.name").toLowerCase();
-		// if (os.indexOf("windows") != -1) {
-		// isWindows = true;
-		// other = false;
-		// } else if (os.indexOf("mac") != -1) {
-		// isMac = true;
-		// other = false;
-		// }
-		//
-		// File temp;
-		// if (isMac) {
-		// temp = new File("/usr/local/Cellar/ffmpeg/3.1.1/bin/");
-		// } else {
-		//
-		// // Temp dir?
-		// temp = new File(System.getProperty("java.io.tmpdir"), "jave-" +
-		// myEXEversion);
-		// if (!temp.exists()) {
-		// temp.mkdirs();
-		// temp.deleteOnExit();
-		// }
-		// }
-		// // ffmpeg executable export on disk.
-		// String suffix = isWindows ? ".exe" : "";
-		// File exe = new File(temp, "ffmpeg" + suffix);
-		// if (!exe.exists() && other) {
-		// copyFile("ffmpeg" + suffix, exe);
-		// }
-		// // pthreadGC2.dll
-		// if (isWindows) {
-		// File dll = new File(temp, "pthreadGC2.dll");
-		// if (!dll.exists()) {
-		// copyFile("pthreadGC2.dll", dll);
-		// }
-		// }
-		// // Need a chmod?
-		// if (other || isMac) {
-		// Runtime runtime = Runtime.getRuntime();
-		// try {
-		// runtime.exec(new String[] { "/bin/chmod", "755",
-		// exe.getAbsolutePath() });
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
 
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.indexOf("windows") != -1) {

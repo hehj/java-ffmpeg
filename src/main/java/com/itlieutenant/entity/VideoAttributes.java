@@ -16,9 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 import java.io.Serializable;
+
+import com.itlieutenant.service.Encoder;
 
 /**
  * Attributes controlling the video encoding process.
@@ -69,7 +71,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The codec name for the encoding process.
 	 */
-	String getCodec() {
+	public String getCodec() {
 		return codec;
 	}
 
@@ -95,7 +97,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The the forced tag/fourcc value for the video stream.
 	 */
-	String getTag() {
+	public String getTag() {
 		return tag;
 	}
 
@@ -114,7 +116,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The bitrate value for the encoding process.
 	 */
-	Integer getBitRate() {
+	public Integer getBitRate() {
 		return bitRate;
 	}
 
@@ -134,7 +136,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The frame rate value for the encoding process.
 	 */
-	Float getFrameRate() {
+	public Float getFrameRate() {
 		return frameRate;
 	}
 
@@ -154,7 +156,7 @@ public class VideoAttributes implements Serializable {
 	 * 
 	 * @return The video size for the encoding process.
 	 */
-	VideoSize getSize() {
+	public VideoSize getSize() {
 		return size;
 	}
 

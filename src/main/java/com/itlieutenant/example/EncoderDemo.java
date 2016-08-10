@@ -1,17 +1,17 @@
-package it.sauronsoftware.example;
+package com.itlieutenant.example;
 
 import java.io.File;
 
-import it.sauronsoftware.jave.AudioAttributes;
-import it.sauronsoftware.jave.AudioInfo;
-import it.sauronsoftware.jave.Encoder;
-import it.sauronsoftware.jave.EncoderException;
-import it.sauronsoftware.jave.EncodingAttributes;
-import it.sauronsoftware.jave.InputFormatException;
-import it.sauronsoftware.jave.MultimediaInfo;
-import it.sauronsoftware.jave.VideoAttributes;
-import it.sauronsoftware.jave.VideoInfo;
-import it.sauronsoftware.jave.VideoSize;
+import com.itlieutenant.entity.AudioAttributes;
+import com.itlieutenant.entity.AudioInfo;
+import com.itlieutenant.entity.EncodingAttributes;
+import com.itlieutenant.entity.MultimediaInfo;
+import com.itlieutenant.entity.VideoAttributes;
+import com.itlieutenant.entity.VideoInfo;
+import com.itlieutenant.entity.VideoSize;
+import com.itlieutenant.exception.EncoderException;
+import com.itlieutenant.exception.InputFormatException;
+import com.itlieutenant.service.Encoder;
 
 public class EncoderDemo {
 	public static void main(String[] args) {

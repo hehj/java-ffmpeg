@@ -16,34 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.exception;
 
 /**
- * Abstract class whose derived concrete instances are used by {@link Encoder}
- * to locate the ffmpeg executable path.
+ * This expection is thrown if a source file format is not recognized.
  * 
  * @author Carlo Pelliccia
- * @see Encoder
  */
-public abstract class FFMPEGLocator {
+public class InputFormatException extends EncoderException {
 
-	/**
-	 * This method should return the path of a ffmpeg executable suitable for
-	 * the current machine.
-	 * 
-	 * @return The path of the ffmpeg executable.
-	 */
-	protected abstract String getFFMPEGExecutablePath();
+	private static final long serialVersionUID = 1L;
 
-	/**
-	 * It returns a brand new {@link FFMPEGExecutor}, ready to be used in a
-	 * ffmpeg call.
-	 * 
-	 * @return A newly instanced {@link FFMPEGExecutor}, using this locator to
-	 *         call the ffmpeg executable.
-	 */
-	FFMPEGExecutor createExecutor() {
-		return new FFMPEGExecutor(getFFMPEGExecutablePath());
+	InputFormatException() {
+		super();
+	}
+
+	InputFormatException(String message) {
+		super(message);
 	}
 
 }

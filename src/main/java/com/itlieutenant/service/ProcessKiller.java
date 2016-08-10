@@ -16,23 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.service;
 
 /**
- * This expection is thrown if a source file format is not recognized.
+ * A package-private utility to add a shutdown hook to kill ongoing encoding
+ * processes at the jvm shutdown.
  * 
  * @author Carlo Pelliccia
  */
-public class InputFormatException extends EncoderException {
+class ProcessKiller extends Thread {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * The process to kill.
+	 */
+	private Process process;
 
-	InputFormatException() {
-		super();
+	/**
+	 * Builds the killer.
+	 * 
+	 * @param process
+	 *            The process to kill.
+	 */
+	public ProcessKiller(Process process) {
+		this.process = process;
 	}
 
-	InputFormatException(String message) {
-		super(message);
+	/**
+	 * It kills the supplied process.
+	 */
+	public void run() {
+		process.destroy();
 	}
 
 }

@@ -16,9 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 import java.io.Serializable;
+
+import com.itlieutenant.service.Encoder;
 
 /**
  * Attributes controlling the audio encoding process.
@@ -70,7 +72,7 @@ public class AudioAttributes implements Serializable {
 	 * 
 	 * @return The codec name for the encoding process.
 	 */
-	String getCodec() {
+	public String getCodec() {
 		return codec;
 	}
 
@@ -96,7 +98,7 @@ public class AudioAttributes implements Serializable {
 	 * 
 	 * @return The bitrate value for the encoding process.
 	 */
-	Integer getBitRate() {
+	public Integer getBitRate() {
 		return bitRate;
 	}
 
@@ -116,7 +118,7 @@ public class AudioAttributes implements Serializable {
 	 * 
 	 * @return the samplingRate The samplingRate value for the encoding process.
 	 */
-	Integer getSamplingRate() {
+	public Integer getSamplingRate() {
 		return samplingRate;
 	}
 
@@ -136,7 +138,7 @@ public class AudioAttributes implements Serializable {
 	 * 
 	 * @return The channels value (1=mono, 2=stereo) for the encoding process.
 	 */
-	Integer getChannels() {
+	public Integer getChannels() {
 		return channels;
 	}
 
@@ -157,7 +159,7 @@ public class AudioAttributes implements Serializable {
 	 * 
 	 * @return The volume value for the encoding process.
 	 */
-	Integer getVolume() {
+	public Integer getVolume() {
 		return volume;
 	}
 

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 /**
  * Instances of this class report informations about a video stream that can be
@@ -62,7 +62,7 @@ public class VideoInfo {
 	 * @param decoder
 	 *            The video stream decoder name.
 	 */
-	void setDecoder(String codec) {
+	public void setDecoder(String codec) {
 		this.decoder = codec;
 	}
 
@@ -81,7 +81,7 @@ public class VideoInfo {
 	 * @param size
 	 *            The video size.
 	 */
-	void setSize(VideoSize size) {
+	public void setSize(VideoSize size) {
 		this.size = size;
 	}
 

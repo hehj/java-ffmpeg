@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +26,24 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.itlieutenant.entity.AudioAttributes;
+import com.itlieutenant.entity.AudioInfo;
+import com.itlieutenant.entity.EncodingAttributes;
+import com.itlieutenant.entity.MultimediaInfo;
+import com.itlieutenant.entity.VideoAttributes;
+import com.itlieutenant.entity.VideoInfo;
+import com.itlieutenant.entity.VideoSize;
+import com.itlieutenant.exception.EncoderException;
+import com.itlieutenant.exception.InputFormatException;
+
+
 /**
  * Main class of the package. Instances can encode audio and video streams.
  * 
  * @author Carlo Pelliccia
  */
 public class Encoder {
-
+	
 	/**
 	 * This regexp is used to parse the ffmpeg output about the supported
 	 * formats.
@@ -538,7 +549,7 @@ public class Encoder {
 							}
 						}
 
-						info.setVideo(video);
+						info.setAudio(audio);
 
 					}
 				}
@@ -707,16 +718,17 @@ public class Encoder {
 		ffmpeg.addArgument(target.getAbsolutePath());
 		try {
 			ffmpeg.execute();
+			
+			@SuppressWarnings("resource")
+			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
+			@SuppressWarnings("unused")
+			String line;
+			while ((line=reader.readLine())!=null) {
+				//System.out.println(line);
+			}
+			
 		} catch (IOException e) {
 			throw new EncoderException(e);
-		}
-
-		if (!target.exists()) {
-			throw new EncoderException("Nothing output!");
-		}
-
-		if (target.length() < 1) {
-			throw new EncoderException("Output a empty file!");
 		}
 
 	}

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.sauronsoftware.jave;
+package com.itlieutenant.entity;
 
 /**
  * Instances of this class report informations about an audio stream that can be
@@ -64,7 +64,7 @@ public class AudioInfo {
 	 * @param decoder
 	 *            The audio stream decoder name.
 	 */
-	void setDecoder(String format) {
+	public void setDecoder(String format) {
 		this.decoder = format;
 	}
 
@@ -84,7 +84,7 @@ public class AudioInfo {
 	 * @param samplingRate
 	 *            The audio stream sampling rate.
 	 */
-	void setSamplingRate(int samplingRate) {
+	public void setSamplingRate(int samplingRate) {
 		this.samplingRate = samplingRate;
 	}
 
@@ -104,7 +104,7 @@ public class AudioInfo {
 	 * @param channels
 	 *            The audio stream channels number (1=mono, 2=stereo).
 	 */
-	void setChannels(int channels) {
+	public void setChannels(int channels) {
 		this.channels = channels;
 	}
 
@@ -124,7 +124,7 @@ public class AudioInfo {
 	 * @param bitRate
 	 *            The audio stream (average) bit rate.
 	 */
-	void setBitRate(int bitRate) {
+	public void setBitRate(int bitRate) {
 		this.bitRate = bitRate;
 	}
 
