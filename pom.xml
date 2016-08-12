@@ -17,7 +17,6 @@
 				<directory>src/test/resources</directory>
 			</testResource>
 		</testResources>
-	</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
