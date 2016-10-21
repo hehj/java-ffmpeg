@@ -597,10 +597,10 @@ public class Encoder {
 		FFMPEGExecutor ffmpeg = locator.createExecutor();
 		ffmpeg.addArgument("-i");
 		ffmpeg.addArgument(source.getAbsolutePath());
+		ffmpeg.addArgument("-y");
 		ffmpeg.addArgument(tartget.getAbsolutePath());
 		try {
 			ffmpeg.execute();
-			
 			@SuppressWarnings("resource")
 			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
 			@SuppressWarnings("unused")
@@ -647,6 +647,10 @@ public class Encoder {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				// System.out.println(line);
+=======
+			while ((line=reader.readLine())!=null) {
+				//System.out.println(line);
+>>>>>>> 14b0667682fffbf50f3c9001ab1b053b69aef62d:src/main/java/com/itlieutenant/service/Encoder.java
 			}
 		} catch (IOException e) {
 			throw new EncoderException(e);
