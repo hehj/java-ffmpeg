@@ -2,6 +2,7 @@ package com.itlieutenant.example;
 
 import java.io.File;
 
+import com.itlieutenant.core.Encoder;
 import com.itlieutenant.entity.AudioAttributes;
 import com.itlieutenant.entity.AudioInfo;
 import com.itlieutenant.entity.EncodingAttributes;
@@ -11,7 +12,6 @@ import com.itlieutenant.entity.VideoInfo;
 import com.itlieutenant.entity.VideoSize;
 import com.itlieutenant.exception.EncoderException;
 import com.itlieutenant.exception.InputFormatException;
-import com.itlieutenant.service.Encoder;
 
 public class EncoderDemo {
 	public static void main(String[] args) {

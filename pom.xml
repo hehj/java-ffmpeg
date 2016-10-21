@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itlieutenant</groupId>
 	<artifactId>java-ffmpeg</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.9</version>
 	<build>
 		<resources>
 			<resource>

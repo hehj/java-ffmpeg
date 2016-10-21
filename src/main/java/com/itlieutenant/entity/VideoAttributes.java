@@ -20,7 +20,7 @@ package com.itlieutenant.entity;
 
 import java.io.Serializable;
 
-import com.itlieutenant.service.Encoder;
+import com.itlieutenant.core.Encoder;
 
 /**
  * Attributes controlling the video encoding process.

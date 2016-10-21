@@ -2,9 +2,9 @@ package com.itlieutenant.example;
 
 import java.io.File;
 
+import com.itlieutenant.core.Encoder;
 import com.itlieutenant.exception.EncoderException;
 import com.itlieutenant.exception.InputFormatException;
-import com.itlieutenant.service.Encoder;
 
 public class SimpleEncoderDemo {
 	public static void main(String[] args) {

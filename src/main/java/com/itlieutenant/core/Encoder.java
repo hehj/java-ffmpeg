@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.itlieutenant.service;
+package com.itlieutenant.core;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,14 +36,13 @@ import com.itlieutenant.entity.VideoSize;
 import com.itlieutenant.exception.EncoderException;
 import com.itlieutenant.exception.InputFormatException;
 
-
 /**
  * Main class of the package. Instances can encode audio and video streams.
  * 
  * @author Carlo Pelliccia
  */
 public class Encoder {
-	
+
 	/**
 	 * This regexp is used to parse the ffmpeg output about the supported
 	 * formats.
@@ -62,7 +61,6 @@ public class Encoder {
 	 * stream.
 	 */
 	private static final Pattern SIZE_PATTERN = Pattern.compile("(\\d+)x(\\d+)", Pattern.CASE_INSENSITIVE);
-
 
 	/**
 	 * This regexp is used to parse the ffmpeg output about the sampling rate of
@@ -602,6 +600,54 @@ public class Encoder {
 		ffmpeg.addArgument(tartget.getAbsolutePath());
 		try {
 			ffmpeg.execute();
+			
+			@SuppressWarnings("resource")
+			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
+			@SuppressWarnings("unused")
+			String line;
+			while ((line = reader.readLine()) != null) {
+				// System.out.println(line);
+			}
+		} catch (IOException e) {
+			throw new EncoderException(e);
+		}
+	}
+
+	/**
+	 * Custome encode
+	 * 
+	 * @Description: 
+	 * @Create: 2016骞�9鏈�27鏃� 涓婂崍12:28:22
+	 * @author HeHangjie
+	 * @update logs
+	 * @param perSourceCmds
+	 * @param source
+	 * @param perTargetCmds
+	 * @param tartget
+	 * @throws EncoderException
+	 * @return void
+	 */
+	public void encode(String[] perSourceCmds, File source, String[] perTargetCmds, File tartget)
+			throws EncoderException {
+		FFMPEGExecutor ffmpeg = locator.createExecutor();
+		for (String s : perSourceCmds) {
+			ffmpeg.addArgument(s);
+		}
+		ffmpeg.addArgument(source.getAbsolutePath());
+		for (String s : perTargetCmds) {
+			ffmpeg.addArgument(s);
+		}
+		ffmpeg.addArgument(tartget.getAbsolutePath());
+		try {
+			ffmpeg.execute();
+			
+			@SuppressWarnings("resource")
+			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
+			@SuppressWarnings("unused")
+			String line;
+			while ((line = reader.readLine()) != null) {
+				// System.out.println(line);
+			}
 		} catch (IOException e) {
 			throw new EncoderException(e);
 		}
@@ -718,15 +764,15 @@ public class Encoder {
 		ffmpeg.addArgument(target.getAbsolutePath());
 		try {
 			ffmpeg.execute();
-			
+
 			@SuppressWarnings("resource")
 			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
 			@SuppressWarnings("unused")
 			String line;
-			while ((line=reader.readLine())!=null) {
-				//System.out.println(line);
+			while ((line = reader.readLine()) != null) {
+				// System.out.println(line);
 			}
-			
+
 		} catch (IOException e) {
 			throw new EncoderException(e);
 		}
