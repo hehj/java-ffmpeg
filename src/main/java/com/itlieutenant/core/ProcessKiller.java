@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.itlieutenant.service;
+package com.itlieutenant.core;
 
 /**
  * A package-private utility to add a shutdown hook to kill ongoing encoding
