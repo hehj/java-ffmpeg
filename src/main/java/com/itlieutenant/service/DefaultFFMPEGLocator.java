@@ -64,7 +64,7 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 		if (os.indexOf("windows") != -1) {
 			this.path = System.getProperty("java.io.tmpdir") + "/jave-" + myEXEversion + "/ffmpeg.exe";
 		} else if (os.indexOf("mac") != -1) {
-			this.path = "/usr/local/Cellar/ffmpeg/3.1.1/bin/ffmpeg";
+			this.path = "/usr/local/Cellar/ffmpeg/3.1.4/bin/ffmpeg";
 		} else {
 			this.path = "/root/bin/ffmpeg";
 		}

@@ -472,10 +472,13 @@ public class Encoder {
 	private MultimediaInfo parseMultimediaInfo(File source, RBufferedReader reader)
 			throws InputFormatException, EncoderException {
 		// Duration: 00:08:17.38, start: 1.579000, bitrate: 5250 kb/s
+		// 
 		Pattern pInfo = Pattern.compile(
-				"^\\s*Duration: (\\d*):(\\d*):(\\d*)\\.(\\d*), start: (\\d*\\.\\d*), bitrate: (\\d*) kb/s.*$",
+				"^\\s*Duration: (\\d*):(\\d*):(\\d*)\\.(\\d*)[\\s\\S]*, bitrate: (\\d*) kb/s.*$",
 				Pattern.CASE_INSENSITIVE);
-
+		// [\\s\\S]* = Any char
+		// \\s = space
+		// \\S = any char without space
 		// Stream #0.0: Audio: wmapro, 44100 Hz, stereo, flt, 440 kb/s
 		// Stream #0.1: Video: wmv3, yuv420p, 720x576, 25 tbr, 1k tbn, 1k tbc
 		Pattern pStream = Pattern.compile("^\\s*Stream #\\S+: ((?:Audio)|(?:Video)|(?:Data)): (.*)\\s*$",
@@ -501,7 +504,7 @@ public class Encoder {
 							+ (hours * 60L * 60L * 1000L);
 
 					info.setDuration(duration);
-					int bitRate = Integer.parseInt(mInfo.group(6));
+					int bitRate = Integer.parseInt(mInfo.group(5));
 					info.setBitRate(bitRate);
 				}
 
