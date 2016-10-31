@@ -19,10 +19,6 @@
 package com.itlieutenant.core;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * The default ffmpeg executable locator, which exports on disk the ffmpeg
@@ -38,7 +34,7 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 	 * Trace the version of the bundled ffmpeg executable. It's a counter: every
 	 * time the bundled ffmpeg change it is incremented by 1.
 	 */
-	private static final int myEXEversion = 1;
+	private static final String myFfmpegVersion = "3.1.4";
 
 	/**
 	 * The ffmpeg executable file path.
@@ -61,11 +57,9 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 	public void defaultFFMPEGLocator() {
 
 		String os = System.getProperty("os.name").toLowerCase();
-		if (os.indexOf("windows") != -1) {
-			this.path = System.getProperty("java.io.tmpdir") + "/jave-" + myEXEversion + "/ffmpeg.exe";
-		} else if (os.indexOf("mac") != -1) {
-			this.path = "/usr/local/Cellar/ffmpeg/3.1.4/bin/ffmpeg";
-		} else {
+		if (os.indexOf("mac") != -1) {
+			this.path = "/usr/local/Cellar/ffmpeg/" + myFfmpegVersion + "/bin/ffmpeg";
+		} else {// linux centos
 			this.path = "/root/bin/ffmpeg";
 		}
 		// Ok.
@@ -73,49 +67,6 @@ public class DefaultFFMPEGLocator extends FFMPEGLocator {
 
 	protected String getFFMPEGExecutablePath() {
 		return path;
-	}
-
-	/**
-	 * Copies a file bundled in the package to the supplied destination.
-	 * 
-	 * @param path
-	 *            The name of the bundled file.
-	 * @param dest
-	 *            The destination.
-	 * @throws RuntimeException
-	 *             If aun unexpected error occurs.
-	 */
-	@SuppressWarnings("unused")
-	@Deprecated
-	private void copyFile(String path, File dest) throws RuntimeException {
-		InputStream input = null;
-		OutputStream output = null;
-		try {
-			input = getClass().getResourceAsStream(path);
-			output = new FileOutputStream(dest);
-			byte[] buffer = new byte[1024];
-			int l;
-			while ((l = input.read(buffer)) != -1) {
-				output.write(buffer, 0, l);
-			}
-		} catch (IOException e) {
-			throw new RuntimeException("Cannot write file " + dest.getAbsolutePath());
-		} finally {
-			if (output != null) {
-				try {
-					output.close();
-				} catch (Throwable t) {
-					;
-				}
-			}
-			if (input != null) {
-				try {
-					input.close();
-				} catch (Throwable t) {
-					;
-				}
-			}
-		}
 	}
 
 }

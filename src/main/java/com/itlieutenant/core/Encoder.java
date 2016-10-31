@@ -470,7 +470,6 @@ public class Encoder {
 	private MultimediaInfo parseMultimediaInfo(File source, RBufferedReader reader)
 			throws InputFormatException, EncoderException {
 		// Duration: 00:08:17.38, start: 1.579000, bitrate: 5250 kb/s
-		// 
 		Pattern pInfo = Pattern.compile(
 				"^\\s*Duration: (\\d*):(\\d*):(\\d*)\\.(\\d*)[\\s\\S]*, bitrate: (\\d*) kb/s.*$",
 				Pattern.CASE_INSENSITIVE);
@@ -498,8 +497,8 @@ public class Encoder {
 					long minutes = Integer.parseInt(mInfo.group(2));
 					long seconds = Integer.parseInt(mInfo.group(3));
 					long dec = Integer.parseInt(mInfo.group(4));
-					long duration = (dec * 100L) + (seconds * 1000L) + (minutes * 60L * 1000L)
-							+ (hours * 60L * 60L * 1000L);
+					long duration = (new Double("0." + dec).longValue() * 100L) + (seconds * 1000L)
+							+ (minutes * 60L * 1000L) + (hours * 60L * 60L * 1000L);
 
 					info.setDuration(duration);
 					int bitRate = Integer.parseInt(mInfo.group(5));
@@ -564,32 +563,6 @@ public class Encoder {
 	}
 
 	/**
-	 * Re-encode a multimedia file.
-	 * 
-	 * @param source
-	 *            The source multimedia file. It cannot be null. Be sure this
-	 *            file can be decoded (see
-	 *            {@link Encoder#getSupportedDecodingFormats()},
-	 *            {@link Encoder#getAudioDecoders()} and
-	 *            {@link Encoder#getVideoDecoders()}).
-	 * @param target
-	 *            The target multimedia re-encoded file. It cannot be null. If
-	 *            this file already exists, it will be overwrited.
-	 * @param attributes
-	 *            A set of attributes for the encoding process.
-	 * @throws IllegalArgumentException
-	 *             If both audio and video parameters are null.
-	 * @throws InputFormatException
-	 *             If the source multimedia file cannot be decoded.
-	 * @throws EncoderException
-	 *             If a problems occurs during the encoding process.
-	 */
-	public void encode(File source, File target, EncodingAttributes attributes)
-			throws IllegalArgumentException, InputFormatException, EncoderException {
-		encode(source, target, attributes, null);
-	}
-
-	/**
 	 * Simple more strong more
 	 * 
 	 * @param source
@@ -619,8 +592,8 @@ public class Encoder {
 	/**
 	 * Custome encode
 	 * 
-	 * @Description: 
-	 * @Create: 2016骞�9鏈�27鏃� 涓婂崍12:28:22
+	 * @Description:
+	 * @Create: 2016-9-27 12:28:22
 	 * @author HeHangjie
 	 * @update logs
 	 * @param perSourceCmds
@@ -643,7 +616,7 @@ public class Encoder {
 		ffmpeg.addArgument(tartget.getAbsolutePath());
 		try {
 			ffmpeg.execute();
-			
+
 			@SuppressWarnings("resource")
 			RBufferedReader reader = new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
 			@SuppressWarnings("unused")
@@ -670,9 +643,6 @@ public class Encoder {
 	 *            this file already exists, it will be overwrited.
 	 * @param attributes
 	 *            A set of attributes for the encoding process.
-	 * @param listener
-	 *            An optional progress listener for the encoding process. It can
-	 *            be null.
 	 * @throws IllegalArgumentException
 	 *             If both audio and video parameters are null.
 	 * @throws InputFormatException
@@ -680,7 +650,7 @@ public class Encoder {
 	 * @throws EncoderException
 	 *             If a problems occurs during the encoding process.
 	 */
-	public void encode(File source, File target, EncodingAttributes attributes, EncoderProgressListener listener)
+	public void encode(File source, File target, EncodingAttributes attributes)
 			throws IllegalArgumentException, InputFormatException, EncoderException {
 		String formatAttribute = attributes.getFormat();
 		Float offsetAttribute = attributes.getOffset();
