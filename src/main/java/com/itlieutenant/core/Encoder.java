@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -603,14 +604,14 @@ public class Encoder {
 	 * @throws EncoderException
 	 * @return void
 	 */
-	public void encode(String[] perSourceCmds, File source, String[] perTargetCmds, File tartget)
+	public void encode(List<String> perCmds, File source, List<String> cmds, File tartget)
 			throws EncoderException {
 		FFMPEGExecutor ffmpeg = locator.createExecutor();
-		for (String s : perSourceCmds) {
+		for (String s : perCmds) {
 			ffmpeg.addArgument(s);
 		}
 		ffmpeg.addArgument(source.getAbsolutePath());
-		for (String s : perTargetCmds) {
+		for (String s : cmds) {
 			ffmpeg.addArgument(s);
 		}
 		ffmpeg.addArgument(tartget.getAbsolutePath());
