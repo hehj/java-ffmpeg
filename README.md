@@ -23,9 +23,11 @@
     Supported the u3m8 encode
     支持u3m8转码。
     新增了encode方法，可以直接传送ffmpeg参数。
+    
     ```` java
     public void encode(List<String> perCmds, File source, List<String> cmds, File tartget);
     ````
+    
     调用方法见M3u7MacDemo.java
     
     
